@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">猜數字</string>
+    <string name="go">猜</string>
+    <string name="please_enter_a_number_1_10">請輸入數字(1~10)</string>
+    <string name="action_settings">設定</string>
+    <string name="bigger">大一點</string>
+    <string name="excellent">超神的! 數字就是</string>
+    <string name="ok">確定</string>
+    <string name="result">結果</string>
+    <string name="smaller">小一點</string>
+    <string name="you_got_it">答對啦!!</string>
+</resources>
