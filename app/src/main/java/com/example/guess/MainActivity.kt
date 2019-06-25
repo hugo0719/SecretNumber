@@ -15,17 +15,19 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
     var secretNumber = SecretNumber()
+    var answer =secretNumber.secret
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        Log.d("yuri", "Answer : " +secretNumber.secret)
+        Log.d("yuri", "Answer : ${answer}")
 
         fab.setOnClickListener { view ->
             AlertDialog.Builder(this)
-                .setTitle("Replay")
-                .setMessage("Are you sure replay?")
-                .setPositiveButton("YES", {dialog, which ->
+                .setTitle(getString(R.string.replay))
+                .setMessage(getString(R.string.sure))
+                .setPositiveButton(getString(R.string.yes), { dialog, which ->
                     secretNumber.reset()
                     counter.setText("0")
                 })
@@ -34,23 +36,20 @@ class MainActivity : AppCompatActivity() {
        counter.setText(secretNumber.count.toString())
     }
 
+
     fun check(view: View){
         var number = ed_number.text.toString().toInt()
         var guess = secretNumber.validate(number)
-        var cou = secretNumber.count
         counter.setText(secretNumber.count.toString())
         ed_number.setText("")
-        var message = getString(R.string.you_got_it)
-        if (cou <= 2 && guess == 0){
-            message = getString(R.string.excellent) + secretNumber.secret
-        } else if (cou < 3){
-            if(guess < 0){
-                message = getString(R.string.bigger)
-            } else if (guess > 0 ){
-                message = getString(R.string.smaller)
-            }
-        }
 
+      val message= when{
+          guess < 0 -> getString(R.string.bigger)
+          guess > 0 -> getString(R.string.smaller)
+          guess == 0 && secretNumber.count <= 2 -> getString(R.string.excellent)+ answer
+          else -> getString(R.string.you_got_it) + answer
+
+      }
 
 //        Toast.makeText(this,message , Toast.LENGTH_LONG).show()
         AlertDialog.Builder(this)
@@ -58,6 +57,7 @@ class MainActivity : AppCompatActivity() {
             .setMessage(message)
             .setPositiveButton(getString(R.string.ok), null)
             .show()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

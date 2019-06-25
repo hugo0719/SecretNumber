@@ -8,5 +8,8 @@
     <string name="smaller">Smaller</string>
     <string name="ok">OK</string>
     <string name="result">Result</string>
-    <string name="you_got_it">You got it</string>
+    <string name="you_got_it">You got it, The number is</string>
+    <string name="sure">Are you sure replay?</string>
+    <string name="replay">Replay</string>
+    <string name="yes">YES</string>
 </resources>
